@@ -1,24 +1,21 @@
-import 'package:Control_Cultivos/Home/home.dart';
-import 'package:Control_Cultivos/Login/createAccount.dart';
+import 'package:Control_Cultivos/Login/login.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+class CreateNewAccount extends StatefulWidget {
+  CreateNewAccount({Key key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _CreateNewAccountState createState() => _CreateNewAccountState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _CreateNewAccountState extends State<CreateNewAccount> {
   TextEditingController email_controller = new TextEditingController();
   TextEditingController password_controller = new TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    //variables para los tamaños
     double heigth = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
@@ -27,18 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: heigth * .05,
             ),
-            CircleAvatar(
-              minRadius: heigth * .05,
-              maxRadius: width * .15,
-              backgroundImage: NetworkImage(
-                "https://scontent.fgdl5-2.fna.fbcdn.net/v/t31.0-8/17492966_959961907473788_1175562466240134332_o.jpg?_nc_cat=101&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFI19Ex_xcKQsB0wmr-esrHEVdOqbP_b0kRV06ps_9vSWYLrqfQht2lfw02bvnyePbn5EXDP5h4qJIkuEILfsSD&_nc_ohc=cG4YBP9BNFsAX8oSFJK&_nc_ht=scontent.fgdl5-2.fna&oh=8e611e7d7d5b7c021bf83fef2746c6a4&oe=5FE98B12",
-              ),
-            ),
-            SizedBox(
-              height: heigth * .02,
-            ),
             Text(
-              "Ingrese sus datos",
+              "Crear cuenta",
               style: TextStyle(fontSize: heigth * .04),
             ),
             Container(
@@ -53,13 +40,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextField(
                     controller: email_controller,
                     decoration: InputDecoration(
-                      hintText: 'correo electronico',
+                      hintText: 'ingrese su correo electronico',
                     ),
                   ),
                   TextField(
                     controller: password_controller,
                     decoration: InputDecoration(
-                      hintText: 'contraseña',
+                      hintText: 'ingrese su contraseña',
                     ),
                   ),
                 ],
@@ -69,34 +56,35 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 if (email_controller.text == "" ||
                     password_controller.text == "") {
-                  final snackBar = SnackBar(content: Text('Error al ingresar'));
+                  final snackBar =
+                      SnackBar(content: Text('Error al crear cuenta'));
+                  _scaffoldKey.currentState.showSnackBar(snackBar);
+                } else {
+                  //como validamos que los campos estan llenos, los registramos
+                  //await _pushOrder();
+                  final snackBar = SnackBar(
+                    content: Text('Cuenta creada con exito'),
+                  );
                   _scaffoldKey.currentState.showSnackBar(snackBar);
                   email_controller.text = "";
                   password_controller.text = "";
-                } else {
-                  //como validamos que los campos estan llenos, los registramos
-                  //await _checkAccount();
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (_) => Home(),
-                    ),
-                  );
                 }
               }, //validation function
               color: Colors.blueGrey,
               child: Text(
-                "Ingresar",
+                "Crear cuenta",
                 style: TextStyle(color: Colors.white),
               ),
             ),
             SizedBox(
               height: heigth * .1,
             ),
+            Text("¿Ya tienes cuenta?"),
             MaterialButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (_) => CreateNewAccount(),
+                    builder: (_) => LoginScreen(),
                   ),
                 );
               }, //go to register page
@@ -104,11 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.group_add,
+                    Icons.account_circle,
                     size: heigth * .07,
                   ),
                   Text(
-                    "Crear cuenta",
+                    "Iniciar sesion",
                     style: TextStyle(fontSize: heigth * .03),
                   ),
                 ],
