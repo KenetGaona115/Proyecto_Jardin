@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/basic.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -14,24 +16,59 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Control de cultivos"),
+          backgroundColor: Colors.black,
+          centerTitle: true,
         ),
-        body: ListBody(
-          children: [
-            Card(
-              child: Row(
-                children: [
-                  CircleAvatar(),
-                  Column(
-                    children: [
-                      Text("data"),
-                      Text("data"),
-                      Text("data"),
-                      Text("data"),
-                    ],
-                  )
-                ],
-              ),
-            )
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                MaterialButton(
+                  onPressed: () {},
+                  height: 50,
+                  minWidth: 200,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      side: BorderSide(color: Colors.black)),
+                  child: Text(
+                    "Ver plantas",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  height: 50,
+                  minWidth: 200,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      side: BorderSide(color: Colors.black)),
+                  child: Text(
+                    "Solicitar asesoría",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  height: 50,
+                  minWidth: 200,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      side: BorderSide(color: Colors.black)),
+                  child: Text(
+                    "Añadir planta",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
