@@ -17,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   LoginBloc _bloc;
   @override
-  @override
   void initState() {
     super.initState();
     //inicializamos el bloc

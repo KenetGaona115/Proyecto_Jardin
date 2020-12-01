@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:Control_Cultivos/AddPlant/addPlant.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -31,8 +30,9 @@ class _HomeState extends State<Home> {
                   minWidth: 200,
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                      side: BorderSide(color: Colors.black)),
+                    borderRadius: BorderRadius.circular(18),
+                    side: BorderSide(color: Colors.black),
+                  ),
                   child: Text(
                     "Ver plantas",
                     style: TextStyle(
@@ -45,8 +45,9 @@ class _HomeState extends State<Home> {
                   minWidth: 200,
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                      side: BorderSide(color: Colors.black)),
+                    borderRadius: BorderRadius.circular(18),
+                    side: BorderSide(color: Colors.black),
+                  ),
                   child: Text(
                     "Solicitar asesoría",
                     style: TextStyle(
@@ -54,7 +55,11 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddPlanta(),
+                    ));
+                  },
                   height: 50,
                   minWidth: 200,
                   color: Colors.white,
