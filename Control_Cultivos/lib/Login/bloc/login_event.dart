@@ -11,7 +11,9 @@ class ChooseImageEvent extends LoginEvent {}
 
 class UploadFileEvent extends LoginEvent {
   final File image;
-  UploadFileEvent(this.image);
+  UploadFileEvent({@required this.image});
+  @override
+  List<Object> get props => [image];
 }
 
 class SaveDataEvent extends LoginEvent {

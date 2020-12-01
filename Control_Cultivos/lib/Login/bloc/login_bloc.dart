@@ -46,6 +46,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } else if (event is CreateNewPlatEvent) {
       yield AddImageState();
     } else if (event is SaveDataEvent) {
+      print(
+          ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      print(event.annotations);
+      print(event.family);
+      print(event.name);
       bool saved = await _saveImage(
         event.image,
         event.name,
@@ -53,7 +58,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         event.family,
       );
       if (saved) {
-        await _getData();
         yield CloudStoreSaved();
       } else
         yield ErrorState(
@@ -90,10 +94,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Future<bool> _chooseImageFunct() async {
     try {
       await ImagePicker.pickImage(
-        source: ImageSource.gallery,
-        maxHeight: 720,
-        maxWidth: 720,
-      ).then((image) {
+              source: ImageSource.gallery,
+              maxHeight: 720,
+              maxWidth: 720,
+              imageQuality: 50)
+          .then((image) {
         _chooseImage = image;
       });
       return true;
@@ -112,11 +117,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       StorageUploadTask uploadTask = reference.putFile(_chooseImage);
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
       taskSnapshot.ref.getDownloadURL().then((imageUrl) {
-        print("Link>>>>> $imageUrl");
+        //print("Link>>>>> $imageUrl");
       });
 
       await reference.getDownloadURL().then((fileURL) {
-        print("$fileURL");
+        //print("$fileURL");
         _url = fileURL;
       });
       return true;
@@ -127,8 +132,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<bool> _saveImage(image, name, annotations, family) async {
+    print(image.toString());
+    print(name);
+    print(annotations);
+    print(family);
     try {
-      await _firestore.collection("UserPlants").document().setData({
+      await _firestore.collection("MisPlantas").document().setData({
         "name": name,
         "annotations": annotations,
         "family": family,

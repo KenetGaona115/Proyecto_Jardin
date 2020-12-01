@@ -11,6 +11,8 @@ class GetImageState extends LoginState {
   final File image;
 
   GetImageState({@required this.image});
+  @override
+  List<Object> get props => [image];
 }
 
 class ErrorState extends LoginState {

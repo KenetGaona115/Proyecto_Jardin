@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:Control_Cultivos/AddPlant/addPlant.dart';
+
+import 'package:flutter/src/widgets/basic.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import '../PlantList/plantList.dart';
+import '../Utils/constants.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -25,7 +31,12 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PlantList(
+                              plants: constPlants,
+                            )));
+                  },
                   height: 50,
                   minWidth: 200,
                   color: Colors.white,
