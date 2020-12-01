@@ -48,15 +48,14 @@ class BlocPlantsBloc extends Bloc<BlocPlantsEvent, BlocPlantsState> {
   Future<bool> _getData() async {
     try {
       var plants =
-          await firestoreInstance.collection("UserPlants").getDocuments();
+          await firestoreInstance.collection("MisPlantas").getDocuments();
       plantList = plants.documents
-          .map(
-            (plant) => Plant(
+          .map((plant) => Plant(
                 name: plant["name"],
                 annotations: plant["annotations"],
                 family: plant["family"],
                 image: plant["image"],
-          ))
+              ))
           .toList();
       documentsList = plants.documents;
       return true;

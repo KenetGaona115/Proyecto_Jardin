@@ -1,4 +1,6 @@
+import 'package:Control_Cultivos/PlantList/bloc/bloc_plants_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Models/Plant.dart';
 
@@ -12,18 +14,11 @@ class ItemPlant extends StatefulWidget {
 }
 
 class _ItemPlantState extends State<ItemPlant> {
-  /*
   void _delete() {
-    BlocProvider.of<HamburgersBloc>(context).add(
+    BlocProvider.of<BlocPlantsBloc>(context).add(
       RemoveDataEvent(index: widget.index),
     );
   }
-
-  void _detail(ProductHamburguesas hamburguesa){
-     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Details(hamburguesa: hamburguesa,))
-    );
-  }*/
 
   _dialog() {
     return showDialog(
@@ -62,7 +57,7 @@ class _ItemPlantState extends State<ItemPlant> {
                 new FlatButton(
                   child: new Text("Aceptar"),
                   onPressed: () {
-                    //_delete();
+                    _delete();
                     Navigator.of(context).pop();
                   },
                 ),

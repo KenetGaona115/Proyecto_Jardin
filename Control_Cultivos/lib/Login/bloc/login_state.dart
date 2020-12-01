@@ -5,27 +5,6 @@ abstract class LoginState {}
 
 class LoginInitial extends LoginState {}
 
-class AddImageState extends LoginState {}
+class AddPlantState extends LoginState {}
 
-class GetImageState extends LoginState {
-  final File image;
-
-  GetImageState({@required this.image});
-  @override
-  List<Object> get props => [image];
-}
-
-class ErrorState extends LoginState {
-  final String errmensage;
-  ErrorState({@required this.errmensage});
-}
-
-class UploadedState extends LoginState {
-  final dynamic image;
-  UploadedState({@required this.image});
-}
-
-class CloudStoreSaved extends LoginState {
-  @override
-  List<Object> get props => [];
-}
+class ReloadAddPlantState extends LoginState {}
